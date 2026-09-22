@@ -189,7 +189,7 @@ button { cursor: pointer; }
     opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease;
   }
   .nav.is-open .nav__links { opacity: 1; visibility: visible; transform: none; }
-  .nav__links a { padding: 12px 16px; border-radius: 4px; }
+  .nav__links a { padding: 8px 12px; border-radius: 4px; }
   .nav__links a.is-active::after { left: 0; top: 0; bottom: 0; height: auto; width: 4px; border-radius: 4px 0 0 4px; }
 }
 
@@ -287,16 +287,16 @@ button { cursor: pointer; }
 .about__text p:first-of-type { color: var(--ink); font-size: 1.05rem; font-weight: 500; }
 .facts { margin: 0 0 32px; }
 .facts > div { padding: 10px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; }
-.facts dt { font-size: 1rem; font-weight: 500; color: var(--muted); }
+.facts dt { font-size: 0.9rem; font-weight: 500; color: var(--muted); }
 .facts dd { font-weight: 500; text-align: right; font-size: 0.85rem; }
 .counters { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .counter { background: var(--bg-tint); border: 1px solid var(--line); border-radius: var(--r-md); padding: 10px; text-align: center; }
 .counter b { display: block; font-size: 2.5rem; font-weight: 700; line-height: 1; margin-bottom: 8px; color: var(--primary); }
-.counter span { font-size: 1rem; color: var(--muted); font-weight: 500; }
+.counter span { font-size: 0.9rem; color: var(--muted); font-weight: 500; }
 @media (max-width: 860px) { .about { grid-template-columns: 1fr; } }
 
 /* ---------- Skills ---------- */
-.bento { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.bento { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
 .bento .panel { 
   padding: 10px; min-height: auto; 
   background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
@@ -373,7 +373,7 @@ button { cursor: pointer; }
 
 .timeline__card { 
   background: var(--surface); border: 1px solid var(--line); border-radius: 10px; 
-  padding: 12px 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); 
+  padding: 8px 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); 
   transition: all 0.3s ease; position: relative; overflow: hidden;
   max-width: 500px;
 }
@@ -382,7 +382,7 @@ button { cursor: pointer; }
 .timeline__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
 .timeline__top h3 { font-size: 1.05rem; font-weight: 700; color: var(--ink); }
 .timeline__top .pill { background: var(--primary-soft); color: var(--primary); border: 1px solid var(--primary); font-size: 0.85rem; font-weight: 600; padding: 0.2em 0.6em; border-radius: 4px; }
-.timeline__degree { font-weight: 500; color: var(--ink); font-size: 1rem; }
+.timeline__degree { font-weight: 500; color: var(--ink); font-size: 0.9rem; }
 .timeline__score { 
   display: inline-block; margin-top: 12px; padding: 0.3em 0.8em; border-radius: 4px; 
   background: rgba(168, 85, 247, 0.1); font-size: 0.85rem; font-weight: 600; 
@@ -395,13 +395,13 @@ button { cursor: pointer; }
 
 /* ---------- Contact ---------- */
 .contact { background: var(--surface); padding: 40px 0 32px; border-top: 1px solid var(--line); }
-.contact__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+.contact__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; max-width: 900px; margin: 0 auto; }
 .contact__intro .section__title { margin-bottom: 12px; text-shadow: 0 0 20px rgba(255,255,255,0.1); }
 .contact__intro > p { color: var(--muted); margin-bottom: 24px; font-size: 0.95rem; }
 .contact__links { display: grid; gap: 16px; }
 .contact__links li { display: flex; align-items: center; gap: 16px; }
 .contact-link {
-  flex: 1; display: flex; align-items: center; gap: 20px; padding: 12px 16px; text-decoration: none;
+  flex: 1; display: flex; align-items: center; gap: 12px; padding: 8px 12px; text-decoration: none;
   border: 1px solid var(--line); border-radius: 8px; background: var(--bg);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative; overflow: hidden;
@@ -423,7 +423,7 @@ a.contact-link:hover .contact-link__icon { color: var(--primary); text-shadow: 0
 .contact-link__text { display: flex; flex-direction: column; font-weight: 500; font-size: 0.85rem; color: var(--ink); }
 .contact-link__text small { font-size: 0.85rem; color: var(--muted); }
 .copy-btn { 
-  display: grid; place-items: center; width: 50px; height: 50px; border-radius: 8px; 
+  display: grid; place-items: center; width: 40px; height: 40px; border-radius: 8px; 
   border: 1px solid var(--line); background: var(--bg); color: var(--muted); 
   transition: all 0.3s ease; 
 }
@@ -434,10 +434,10 @@ a.contact-link:hover .contact-link__icon { color: var(--primary); text-shadow: 0
 
 .form { display: grid; gap: 16px; }
 .form__hp { position: absolute; left: -9999px; }
-.field label { display: block; font-weight: 500; margin-bottom: 10px; font-size: 1rem; color: var(--muted); transition: color 0.2s; }
+.field label { display: block; font-weight: 500; margin-bottom: 6px; font-size: 0.9rem; color: var(--muted); transition: color 0.2s; }
 .field:focus-within label { color: var(--primary); text-shadow: 0 0 8px rgba(168, 85, 247, 0.4); }
 .field input, .field textarea {
-  width: 100%; padding: 14px 16px; border: 1px solid var(--line); border-radius: 8px; 
+  width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; 
   background: var(--bg); color: var(--ink);
   transition: all 0.3s ease; font-size: 0.85rem;
 }
@@ -500,7 +500,7 @@ a.contact-link:hover .contact-link__icon { color: var(--primary); text-shadow: 0
 .modal__bar { display: flex; align-items: center; justify-content: space-between; padding: 10px 24px; border-bottom: 1px solid var(--line); background: var(--surface); }
 .modal__actions { display: flex; gap: 12px; }
 .modal iframe { flex: 1; width: 100%; border: 0; background: var(--surface); }
-.modal__fallback { padding: 12px 16px; font-size: 1rem; color: var(--muted); border-top: 1px solid var(--line); margin: 0; }
+.modal__fallback { padding: 8px 12px; font-size: 0.9rem; color: var(--muted); border-top: 1px solid var(--line); margin: 0; }
 
 /* ---------- Toast ---------- */
 .toast {
