@@ -213,28 +213,28 @@ button { cursor: pointer; }
 .js [data-reveal].is-in { opacity: 1; transform: none; }
 
 /* ---------- Hero ---------- */
-/* /* ---------- Hero ---------- */
-.hero { min-height: auto; display: flex; align-items: center; padding: 40px 0 32px; }
+/* /* /* ---------- Hero ---------- */
+.hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 0 60px; }
 .hero__grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; align-items: center; }
 .hero__copy { display: flex; flex-direction: column; align-items: flex-start; }
-.hero__copy .pill { margin-bottom: 12px; display: inline-flex; }
+.hero__copy .pill { margin-bottom: 20px; display: inline-flex; }
 
 .hero__name { font-size: clamp(2rem, 4vw, 2.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 12px; }
 .name-line { display: block; }
 .name-line span { display: inline-block; white-space: pre; transition: all 0.2s; }
 .name-line span:hover { color: var(--primary); text-shadow: 0 0 16px rgba(168,85,247,0.6); }
 
-.hero__role { font-size: 1.05rem; font-weight: 500; color: var(--muted); margin-bottom: 12px; min-height: 1.5em; }
+.hero__role { font-size: 1.15rem; font-weight: 500; color: var(--muted); margin-bottom: 20px; min-height: 1.5em; }
 .typed { color: var(--primary); font-weight: 600; text-shadow: 0 0 16px rgba(168,85,247,0.5); }
 .caret { display: inline-block; width: 2px; height: 1em; margin-left: 2px; background: var(--primary); vertical-align: -0.1em; animation: blink 1s steps(2) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
-.hero__about { color: var(--muted); font-size: 0.85rem; line-height: 1.6; margin-bottom: 12px; max-width: 600px; }
+.hero__about { color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 32px; max-width: 600px; }
 .hero__about p:last-child { margin-bottom: 0; }
 
 /* Portrait */
 .hero__visual { display: flex; justify-content: flex-end; }
 .portrait { 
-  position: relative; width: 260px; height: 260px; 
+  position: relative; width: 300px; height: 300px; 
   border-radius: 50%; padding: 6px;
   z-index: 1; flex-shrink: 0; 
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -250,7 +250,7 @@ button { cursor: pointer; }
   content: ""; position: absolute; top: 0; left: calc(50% - 6px); width: 12px; height: 12px;
   background: var(--primary); border-radius: 50%;
   box-shadow: 0 0 20px 4px var(--primary);
-  transform-origin: 6px 130px; /* Radius of 140px (half of 280) */
+  transform-origin: 6px 150px; /* Radius of 150px (half of 300) */
   animation: spin 3s linear infinite; z-index: 1;
 }
 .portrait:hover { transform: translateY(-8px) scale(1.02); }
