@@ -1,0 +1,388 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ profile.name }} | {{ profile.headline }}</title>
+  <meta name="description" content="{{ profile.tagline }}">
+  <meta property="og:title" content="{{ profile.name }} | {{ profile.headline }}">
+  <meta property="og:description" content="{{ profile.tagline }}">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='30' fill='%236C4CF1'/><text x='50' y='69' font-size='58' text-anchor='middle' fill='white' font-family='Arial' font-weight='700'>{{ profile.initials|slice:':1' }}</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.add('js');
+      try {
+        var t = localStorage.getItem('theme');
+        if (!t) t = 'dark';
+        root.dataset.theme = t;
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.113.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M22.23 0H1.77C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.77 24h20.46c.978 0 1.77-.773 1.77-1.729V1.729C24 .774 23.208 0 22.23 0zM7.12 20.452H3.558V9.049H7.12v11.403zm-1.782-12.96c-1.14 0-2.063-.925-2.063-2.066 0-1.141.923-2.065 2.063-2.065 1.141 0 2.065.924 2.065 2.065 0 1.141-.924 2.066-2.065 2.066zm15.114 12.96h-3.562v-5.558c0-1.326-.025-3.033-1.848-3.033-1.85 0-2.133 1.445-2.133 2.937v5.654H9.346V9.049h3.418v1.56h.049c.476-.9 1.637-1.848 3.366-1.848 3.599 0 4.263 2.368 4.263 5.449v6.242z"/></symbol>
+  <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.383 0 12.029c0 2.124.553 4.195 1.605 6.014L.014 24l6.104-1.601a11.967 11.967 0 005.913 1.558h.005c6.645 0 12.034-5.382 12.034-12.028C24.07 5.834 18.675 0 12.031 0zm0 19.98c-1.794 0-3.55-.482-5.088-1.394l-.364-.216-3.781.992 1.009-3.687-.238-.378a9.986 9.986 0 01-1.528-5.318c0-5.517 4.49-10.007 10.005-10.007 5.516 0 10.006 4.49 10.006 10.007 0 5.517-4.49 10.006-10.006 10.006zm5.498-7.514c-.302-.151-1.782-.88-2.057-.98-.276-.102-.477-.151-.678.151-.202.302-.779.98-.955 1.18-.175.201-.352.227-.654.076-.302-.152-1.272-.469-2.423-1.496-.897-.8-1.503-1.788-1.679-2.09-.176-.302-.019-.465.132-.616.136-.135.302-.352.453-.528.152-.176.202-.301.302-.503.1-.202.05-.378-.025-.528-.076-.151-.678-1.636-.928-2.241-.243-.591-.491-.51-.678-.519-.176-.01-.377-.01-.579-.01-.202 0-.528.075-.804.377-.277.302-1.055 1.031-1.055 2.515 0 1.484 1.08 2.918 1.231 3.12.152.202 2.126 3.245 5.151 4.551.719.311 1.28.497 1.717.636.721.231 1.378.198 1.897.121.58-.087 1.782-.729 2.034-1.434.252-.705.252-1.309.176-1.434-.076-.126-.277-.202-.579-.353z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+  <symbol id="i-arrow-up" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav__mac-dots" aria-hidden="true">
+    <span class="mac-dot mac-dot--red"></span>
+    <span class="mac-dot mac-dot--yellow"></span>
+    <span class="mac-dot mac-dot--green"></span>
+  </div>
+
+  <nav class="nav__links" id="navLinks" aria-label="Main">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    {% if experiences %}<a href="#experience">Experience</a>{% endif %}
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="nav__actions">
+    <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">
+      <svg class="icon icon--moon"><use href="#i-moon"/></svg>
+      <svg class="icon icon--sun"><use href="#i-sun"/></svg>
+    </button>
+    <button class="icon-btn nav__burger" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <svg class="icon"><use href="#i-menu"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="container hero__grid">
+    <div class="hero__copy">
+      {% if profile.open_to_work and profile.availability_text %}
+      <p class="pill pill--live" data-reveal="pop" data-delay="100"><span class="dot"></span>{{ profile.availability_text }}</p>
+      {% endif %}
+
+      <h1 class="hero__name" aria-label="{{ profile.name }}">
+        <span class="name-line" aria-hidden="true">{% for c in profile.first_name %}<span style="--i:{{ forloop.counter0 }}">{{ c }}</span>{% endfor %}</span>
+        {% if profile.last_name %}<span class="name-line" aria-hidden="true">{% for c in profile.last_name %}<span style="--i:{{ forloop.counter0|add:8 }}">{{ c }}</span>{% endfor %}</span>{% endif %}
+      </h1>
+
+      <p class="hero__role" data-reveal="up" data-delay="700">I'm a <span class="typed" data-words="{{ profile.typed_roles }}">{{ profile.role_list.0 }}</span><span class="caret" aria-hidden="true"></span></p>
+      {% if profile.tagline %}<p class="hero__tag" data-reveal="up" data-delay="800">{{ profile.tagline }}</p>{% endif %}
+
+      <div id="about" class="hero__about" data-reveal="up" data-delay="850">
+        <p>I am a passionate and results-driven Python/Django developer with a strong foundation in building scalable web applications and AI-integrated solutions.</p>
+        <p>My approach combines clean architecture, efficient database design, and modern development practices. I am constantly learning and adapting to new technologies to create impactful digital products.</p>
+      </div>
+
+      <div class="hero__cta" data-reveal="up" data-delay="900">
+        {% if profile.resume %}
+        <button class="btn btn--primary" type="button" data-open-resume><svg class="icon"><use href="#i-eye"/></svg>View resume</button>
+        <a class="btn" href="{% url 'resume_download' %}"><svg class="icon"><use href="#i-download"/></svg>Download PDF</a>
+        {% endif %}
+        <a class="btn btn--ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+
+    <div class="hero__visual" data-reveal="scale" data-delay="350">
+      <div class="portrait" data-tilt>
+        {% if profile.photo %}
+        <img src="{{ profile.photo.url }}" alt="Portrait of {{ profile.name }}" fetchpriority="high">
+        {% else %}
+        <div class="portrait__placeholder" aria-hidden="true">{{ profile.initials }}</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+{% if skills %}
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    {% for _ in "1234" %}{% for s in skills %}<span>{{ s.name }}</span><i></i>{% endfor %}{% endfor %}
+  </div>
+</div>
+{% endif %}
+
+<!-- ============ SKILLS ============ -->
+{% if skill_groups %}
+<section class="section section--tint" id="skills">
+  <div class="container">
+    <div class="section__head" data-reveal="up">
+      <h2 class="section__title">Skills</h2>
+      <p class="section__lead">Technologies I work with.</p>
+    </div>
+
+    <div class="bento" data-stagger>
+      {% for g in skill_groups %}
+      <article class="panel panel--{{ g.key }}" data-reveal="{% cycle 'left' 'right' 'scale' 'up' %}">
+        <h3>{{ g.label }}</h3>
+        <ul class="chips">
+          {% for s in g.skills %}
+          <li class="chip" tabindex="0"{% if s.detail %} data-tip="{{ s.detail }}"{% endif %}>{{ s.name }}</li>
+          {% endfor %}
+        </ul>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ============ PROJECTS ============ -->
+{% if projects %}
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section__head" data-reveal="up">
+      <h2 class="section__title">Projects</h2>
+      <p class="section__lead">Things I've built and deployed. Hover over a cover to see what's inside.</p>
+    </div>
+
+    <div class="projects" data-stagger>
+      {% for p in projects %}
+      <article class="project" data-tilt data-reveal="{% cycle 'left' 'right' %}">
+        <div class="project__cover accent-{{ p.accent }}" tabindex="0" aria-label="{{ p.title }} highlights">
+          {% if p.image %}
+          <img class="project__shot" src="{{ p.image.url }}" alt="Screenshot of {{ p.title }}" loading="lazy">
+          {% else %}
+          <span class="project__icon" aria-hidden="true">{{ p.icon }}</span>
+          <span class="project__tags" aria-hidden="true">
+            {% for t in p.tech_list|slice:":4" %}<span style="--n:{{ forloop.counter0 }}">{{ t }}</span>{% endfor %}
+          </span>
+          {% endif %}
+          {% if p.highlight_list %}
+          <span class="project__hint" aria-hidden="true"><svg class="icon"><use href="#i-plus"/></svg>Highlights</span>
+          <div class="project__overlay">
+            <ul>{% for h in p.highlight_list %}<li>{{ h }}</li>{% endfor %}</ul>
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="project__body">
+          <h3 class="project__title">{{ p.title }}</h3>
+          <p class="project__desc">{{ p.description }}</p>
+          {% if p.tech_list %}
+          <ul class="tags">{% for t in p.tech_list %}<li>{{ t }}</li>{% endfor %}</ul>
+          {% endif %}
+          <div class="project__links">
+            {% if p.live_url %}<a class="btn btn--small btn--primary" href="{{ p.live_url }}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-external"/></svg>Live site</a>{% endif %}
+            {% if p.github_url %}<a class="btn btn--small" href="{{ p.github_url }}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-code"/></svg>Source code</a>{% endif %}
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ============ EDUCATION ============ -->
+{% if education %}
+<section class="section section--tint" id="education">
+  <div class="container split">
+    <div class="section__head" data-reveal="left">
+      <h2 class="section__title">Education</h2>
+      <p class="section__lead">Where I've studied so far.</p>
+    </div>
+
+    <ol class="timeline" data-reveal="line" data-stagger>
+      {% for e in education %}
+      <li class="timeline__item{% if e.is_current %} is-current{% endif %}" data-reveal="right">
+        <span class="timeline__dot" aria-hidden="true"></span>
+        <div class="timeline__card">
+          <div class="timeline__top">
+            <h3>{{ e.institution }}</h3>
+            <span class="pill">{{ e.period }}</span>
+          </div>
+          <p class="timeline__degree">{{ e.degree }}</p>
+          {% if e.score %}<p class="timeline__score">{{ e.score }}</p>{% endif %}
+          {% if e.description %}<p class="timeline__desc">{{ e.description }}</p>{% endif %}
+        </div>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+{% endif %}
+
+<!-- ============ EXPERIENCE (sirf tab dikhta hai jab admin me entry ho) ============ -->
+{% if experiences %}
+<section class="section" id="experience">
+  <div class="container split">
+    <div class="section__head" data-reveal="left">
+      <h2 class="section__title">Experience</h2>
+      <p class="section__lead">Internships and work so far.</p>
+    </div>
+    <ol class="timeline" data-reveal="line" data-stagger>
+      {% for x in experiences %}
+      <li class="timeline__item" data-reveal="right">
+        <span class="timeline__dot" aria-hidden="true"></span>
+        <div class="timeline__card">
+          <div class="timeline__top">
+            <h3>{{ x.role }}, {{ x.organization }}</h3>
+            <span class="pill">{{ x.period }}</span>
+          </div>
+          {% if x.point_list %}<ul class="timeline__points">{% for pt in x.point_list %}<li>{{ pt }}</li>{% endfor %}</ul>{% endif %}
+        </div>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+{% endif %}
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="container contact__grid">
+    <div class="contact__intro" data-reveal="left">
+      <h2 class="section__title">Let's work together</h2>
+
+      <ul class="contact__links">
+        {% if profile.email %}
+        <li>
+          <a class="contact-link" href="mailto:{{ profile.email }}">
+            <span class="contact-link__icon"><svg class="icon"><use href="#i-mail"/></svg></span>
+            <span class="contact-link__text"><small>Email</small>{{ profile.email }}</span>
+          </a>
+          <button class="copy-btn" type="button" data-copy="{{ profile.email }}" aria-label="Copy email address"><svg class="icon"><use href="#i-copy"/></svg></button>
+        </li>
+        {% endif %}
+        {% if profile.phone %}
+        <li>
+          <a class="contact-link" href="tel:{{ profile.phone_href }}">
+            <span class="contact-link__icon"><svg class="icon"><use href="#i-phone"/></svg></span>
+            <span class="contact-link__text"><small>Phone</small>{{ profile.phone }}</span>
+          </a>
+          <button class="copy-btn" type="button" data-copy="{{ profile.phone }}" aria-label="Copy phone number"><svg class="icon"><use href="#i-copy"/></svg></button>
+        </li>
+        {% endif %}
+        {% if profile.github_url %}
+        <li>
+          <a class="contact-link" href="{{ profile.github_url }}" target="_blank" rel="noopener">
+            <span class="contact-link__icon"><svg class="icon"><use href="#i-github"/></svg></span>
+            <span class="contact-link__text"><small>GitHub</small>{{ profile.github_handle }}</span>
+          </a>
+        </li>
+        {% endif %}
+        {% if profile.linkedin_url %}
+        <li>
+          <a class="contact-link" href="{{ profile.linkedin_url }}" target="_blank" rel="noopener">
+            <span class="contact-link__icon"><svg class="icon"><use href="#i-linkedin"/></svg></span>
+            <span class="contact-link__text"><small>LinkedIn</small>{{ profile.linkedin_handle }}</span>
+          </a>
+        </li>
+        {% endif %}
+        {% if profile.location %}
+        <li>
+          <span class="contact-link contact-link--static">
+            <span class="contact-link__icon"><svg class="icon"><use href="#i-pin"/></svg></span>
+            <span class="contact-link__text"><small>Location</small>{{ profile.location }}</span>
+          </span>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+
+    <form class="form" id="contactForm" action="{% url 'contact' %}" method="post" novalidate data-reveal="right" data-delay="150">
+      {% csrf_token %}
+      <div class="form__hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+
+      <div class="field">
+        <label for="f-name">Your name</label>
+        <input id="f-name" name="name" type="text" required maxlength="100" autocomplete="name">
+        <p class="field__error" data-error-for="name"></p>
+      </div>
+      <div class="field">
+        <label for="f-email">Email</label>
+        <input id="f-email" name="email" type="email" required autocomplete="email">
+        <p class="field__error" data-error-for="email"></p>
+      </div>
+      <div class="field">
+        <label for="f-message">Message</label>
+        <textarea id="f-message" name="message" rows="5" required maxlength="3000"></textarea>
+        <p class="field__error" data-error-for="message"></p>
+      </div>
+      <button class="btn btn--primary btn--block" type="submit"><svg class="icon"><use href="#i-send"/></svg><span>Send message</span></button>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <h3>{{ profile.name }}</h3>
+    </div>
+    <div class="footer__socials">
+      <a href="https://github.com/khushii-patidar" target="_blank" rel="noopener" aria-label="GitHub" class="social-btn social-github">
+        <svg class="icon"><use href="#i-github"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/khushbu-patidar-524799381" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-btn social-linkedin">
+        <svg class="icon"><use href="#i-linkedin"/></svg>
+      </a>
+      {% if profile.phone %}
+      <a href="https://wa.me/{{ profile.phone|cut:' '|cut:'+'|cut:'-' }}" target="_blank" rel="noopener" aria-label="WhatsApp" class="social-btn social-whatsapp">
+        <svg class="icon"><use href="#i-whatsapp"/></svg>
+      </a>
+      {% endif %}
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; <span id="year">{% now "Y" %}</span> {{ profile.name }}.</p>
+    </div>
+  </div>
+  <a class="footer__top" href="#home" aria-label="Back to top">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+  </a>
+</footer>
+
+<!-- ============ RESUME MODAL ============ -->
+{% if profile.resume %}
+<dialog class="modal" id="resumeDialog" aria-label="Resume">
+  <div class="modal__bar">
+    <strong>{{ profile.name }}, Resume</strong>
+    <div class="modal__actions">
+      <a class="btn btn--small" href="{% url 'resume_download' %}"><svg class="icon"><use href="#i-download"/></svg>Download</a>
+      <button class="icon-btn" type="button" data-close aria-label="Close resume"><svg class="icon"><use href="#i-x"/></svg></button>
+    </div>
+  </div>
+  <iframe title="Resume PDF" data-src="{{ profile.resume.url }}?v={{ profile.updated_at|date:'U' }}"></iframe>
+  <p class="modal__fallback">Can't see the PDF here? <a href="{% url 'resume_download' %}">Download it instead</a>.</p>
+</dialog>
+{% endif %}
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="{% static 'js/main.js' %}" defer></script>
+</body>
+</html>
