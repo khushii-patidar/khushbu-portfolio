@@ -329,9 +329,10 @@ button { cursor: pointer; }
 @media (max-width: 768px) { .bento { grid-template-columns: 1fr; } }
 
 /* ---------- Projects ---------- */
-.projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+.projects { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 24px; }
 .project {
   display: flex; flex-direction: column; overflow: hidden; position: relative;
+  width: 100%; max-width: 420px;
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 4px 16px rgba(0,0,0,0.1);
 }
